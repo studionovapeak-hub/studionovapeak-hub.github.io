@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Nova Peak Studio (solo dev)</title>
+<meta name="description" content="Nova Peak Studio is a solo dev studio. One person building Super Block Blast! — a cozy block puzzle for Android.">
+<meta name="theme-color" content="#0f0f0e">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="../"><span class="brand-mark">N</span><span class="brand-text"><strong>Nova Peak Studio</strong><span>Solo dev</span></span></a>
+    <div class="nav-links" data-nav-links><a href="../">Home</a><a href="../projects/">Game</a><a href="../privacy/">Privacy</a><a href="./">About</a><a class="nav-cta" href="mailto:studionovepeak@gmail.com">Contact →</a></div>
+    <button class="menu-btn" data-menu-btn>☰</button>
+  </div>
+</nav>
+
+<header class="container" style="padding:36px 0 14px">
+  <span class="mono" style="color:var(--muted)">About — it’s just me</span>
+  <h1 style="margin-top:10px">“Studio” is <br><em style="font-family:'Instrument Serif',serif;font-style:italic;color:var(--text2)">what I call my desk.</em></h1>
+  <p class="lead">I’m a solo dev. No team, no publisher — just me coding late, playtesting on the couch, and tweaking that one block shape until it feels right. Nova Peak Studio is the name I use on Google Play; the work is mine.</p>
+</header>
+
+<section class="container section" style="padding-top:16px">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="prose" style="padding:24px">
+        <h2 style="margin-top:0">Who I am</h2>
+        <p>Hey, I’m the person who made <strong>Super Block Blast!</strong>. I like puzzles that are easy to start and hard to quit — the kind you open “for a minute” and look up 20 minutes later. That’s what I tried to build.</p>
+        <p>I do everything: design, code, art, testing, and support.</p>
+        <ul>
+          <li><strong>Why solo?</strong> I like small scope and fast iteration. One game at a time, polished.</li>
+          <li><strong>What I care about:</strong> Snappy drag, clear visuals, offline play, no dark patterns.</li>
+          <li><strong>What’s next:</strong> I’ll keep updating Super Block Blast! with daily tweaks and polish. A second game only when this one feels done.</li>
+        </ul>
+
+        <div style="background:#fff;border:1.5px solid #000;border-radius:12px;padding:14px;margin-top:16px;transform:rotate(-.4deg)">
+          <p class="mono" style="margin:0 0 6px">Current focus — my only game</p>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:44px;height:44px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:white;border:1.5px solid #000">◼</div>
+            <div><strong>Super Block Blast!</strong><br><span class="small">10×10 block blast · Android · Free</span></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px"><a class="btn btn-primary" style="flex:1" href="../projects/super-block-blast/">View game →</a><a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.YOUR_DOMAIN.superblockblast" target="_blank" rel="noopener">Play ↗</a></div>
+        </div>
+
+        <h3 style="margin-top:22px">A quick, honest stack</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+          <div style="background:#fff;border:1.5px solid #000;border-radius:10px;padding:12px"><span class="mono" style="font-size:10px">Location</span><br><strong style="font-size:13px;color:var(--ink)">Solo · Remote</strong><br><span class="small">[your city if you want]</span></div>
+          <div style="background:#fff;border:1.5px solid #000;border-radius:10px;padding:12px"><span class="mono" style="font-size:10px">Since</span><br><strong style="font-size:13px;color:var(--ink)">[year]</strong><br><span class="small">Self-funded</span></div>
+        </div>
+        <p class="small" style="margin-top:12px">Everything here is static — no cookies, no trackers. I host it on GitHub Pages so I can keep the lights on and focus on the game.</p>
+      </div>
+    </div>
+
+    <div id="contact" class="reveal" style="transition-delay:.06s">
+      <div class="contact-card">
+        <h3 style="margin:0">Contact me</h3>
+        <p class="small" style="margin:6px 0 14px">Player support, bug, idea, or just a high score — I read every email.</p>
+        <div style="background:var(--paper);border:1.5px solid #000;border-radius:10px;padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:16px">
+          <div style="width:38px;height:38px;border-radius:10px;background:var(--accent);color:white;display:grid;place-items:center;border:1.5px solid #000">✉</div>
+          <div><span class="mono" style="font-size:10px">Email</span><br><a href="mailto:studionovepeak@gmail.com" style="font-weight:700;color:var(--ink)">studionovepeak@gmail.com</a><br><span class="small">Reply in 2–3 days</span></div>
+        </div>
+
+        <form data-contact-form novalidate>
+          <label for="name">Name</label>
+          <input class="input" id="name" name="name" placeholder="Your name" required autocomplete="name">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+          <label for="subject">Subject</label>
+          <select class="input" id="subject" name="subject"><option>Player support</option><option>Bug report</option><option>Privacy request</option><option>Other</option></select>
+          <label for="message">Message</label>
+          <textarea class="input" id="message" name="message" rows="5" placeholder="Hi, I… " required></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:14px">Send via email →</button>
+          <p class="small" style="margin:8px 0 0;text-align:center">Or email directly: <a href="mailto:studionovepeak@gmail.com" style="color:var(--accent)">studionovepeak@gmail.com</a></p>
+        </form>
+
+        <div class="divider"></div>
+        <h4 class="mono" style="font-size:11px;margin:0 0 8px">Also on</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-ghost" style="padding:8px 12px;font-size:12px" href="https://play.google.com/store/apps/dev?id=YOUR_DEVELOPER_ID" data-play-dev target="_blank" rel="noopener">Google Play ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom"><span>© <span data-year></span> Nova Peak Studio · solo</span><span>No cookies</span></div></div></footer>
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

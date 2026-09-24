@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found — Nova Peak Studio</title>
+<meta name="theme-color" content="#0f0f0e">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+(function(){
+  var parts = location.pathname.split('/').filter(Boolean);
+  var base = '/';
+  if(location.hostname.endsWith('github.io') && parts.length>1){ base = '/' + parts[0] + '/'; }
+  var b = document.createElement('base'); b.href = base; document.head.prepend(b);
+})();
+</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav"><div class="container nav-inner">
+  <a class="brand" href="./"><span class="brand-mark">N</span><span class="brand-text"><strong>Nova Peak Studio</strong><span>Solo dev</span></span></a>
+  <div class="nav-links" data-nav-links><a href="./">Home</a><a href="projects/">Game</a><a href="privacy/">Privacy</a><a href="about/">About</a></div>
+  <button class="menu-btn" data-menu-btn>☰</button>
+</div></nav>
+<main class="container" style="padding:80px 0 40px;text-align:center;max-width:640px">
+  <span class="mono" style="color:var(--muted)">404</span>
+  <h1 style="margin-top:14px">That block doesn’t exist</h1>
+  <p class="lead" style="margin:12px auto 0">Wrong board. Let’s get back to the real game.</p>
+  <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
+    <a class="btn btn-primary" href="./">Go home →</a>
+    <a class="btn btn-ghost" href="projects/super-block-blast/">Super Block Blast!</a>
+  </div>
+  <p class="small" style="margin-top:18px">Privacy link from Play? Use: <span class="kbd">/privacy/super-block-blast/</span></p>
+</main>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
