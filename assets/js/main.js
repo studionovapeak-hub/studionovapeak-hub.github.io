@@ -10,15 +10,31 @@
     });
   }
 
-  // Active link
-  const path = location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+  // Active link — works for relative hrefs like ../, ./, projects/, etc.
   document.querySelectorAll('[data-nav-links] a').forEach(a=>{
-    const href = a.getAttribute('href') || '';
-    // normalize
-    const clean = href.replace(/\/index\.html$/,'/').replace(/^\.\.?\//,'/').replace(/\/$/,'') || '/';
-    // simple contains check for projects/privacy
-    if(clean === path || (clean !== '/' && path.startsWith(clean))) a.classList.add('active');
+    try{
+      const url = new URL(a.getAttribute('href'), location.href);
+      const linkPath = url.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+      const curPath = location.pathname.replace(/\/index\.html$/,'/').replace(/\/$/,'') || '/';
+      if(linkPath === curPath || (linkPath !== '/' && curPath === linkPath) || (linkPath !== '/' && curPath.startsWith(linkPath + '/'))) {
+        a.classList.add('active');
+      }
+      // also catch /projects/super-block-blast/ -> highlight "Game"
+      if(curPath.startsWith('/projects') && linkPath.includes('/projects')) a.classList.add('active');
+      if(curPath.startsWith('/privacy') && linkPath.includes('/privacy')) a.classList.add('active');
+    }catch(e){}
   });
+  // deduplicate — keep only best match (longest path)
+  const actives = document.querySelectorAll('[data-nav-links] a.active');
+  if(actives.length > 1){
+    // if home "/" and another both active, remove home
+    actives.forEach(el=>{
+      const href = el.getAttribute('href');
+      if(href === './' || href === '../' || href === '/' || href === 'index.html'){
+        if(location.pathname.replace(/\/$/,'') !== '/' && location.pathname.replace(/\/$/,'') !== '') el.classList.remove('active');
+      }
+    });
+  }
 
   // Reveal on scroll
   const io = new IntersectionObserver((entries)=>{
@@ -98,9 +114,17 @@
       const data = new FormData(form);
       const subject = encodeURIComponent('[Nova Peak] ' + (data.get('subject')||'Website inquiry'));
       const body = encodeURIComponent(`Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\nMessage:\n${data.get('message')}`);
-      const to = (window.NOVA_DATA && window.NOVA_DATA.studio.email) || 'hello@YOUR_DOMAIN.com';
-      location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      setTimeout(()=>{ btn.textContent = prev; btn.disabled=false; }, 1200);
+      const to = (window.NOVA_DATA && window.NOVA_DATA.studio.email) || 'studionovepeak@gmail.com';
+      // Use an anchor click — more reliable than location.href for mailto
+      const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+      const anchor = document.createElement('a');
+      anchor.href = mailto;
+      anchor.style.display = 'none';
+      document.body.appendChild(anchor);
+      anchor.click();
+      // fallback
+      setTimeout(()=>{ try{ window.location.href = mailto; }catch(e){} }, 200);
+      setTimeout(()=>{ btn.textContent = prev; btn.disabled=false; anchor.remove(); }, 1200);
     });
   }
 })();
