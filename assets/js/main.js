@@ -102,6 +102,65 @@
     });
   }
 
+  // Lightbox — click any game image to enlarge + swipe
+  (function(){
+    const selectors = '.shot img, .hero-gallery img, .polaroid img, .card-media img';
+    const imgs = Array.from(document.querySelectorAll(selectors)).filter(img => img.src && !img.src.includes('placeholder') && img.naturalWidth !== 0);
+    // also use live query on click delegation for dynamically loaded or placeholder fallback
+    const getGroup = () => Array.from(document.querySelectorAll('.shot img, .hero-gallery img')).filter(i=> i.src && i.closest('.shot, .hero-gallery'));
+    let current = 0;
+    let group = [];
+    // create lightbox DOM once
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.innerHTML = '<button class="lb-close" aria-label="Close">✕</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    const lbImg = lb.querySelector('img');
+    const lbCap = lb.querySelector('.lb-cap');
+    const update = () => {
+      if(!group.length) return;
+      const el = group[current];
+      lbImg.src = el.src;
+      lbImg.alt = el.alt || '';
+      lbCap.textContent = (current+1) + ' / ' + group.length + (el.alt ? ' — ' + el.alt : '');
+    };
+    const open = (idx) => {
+      group = getGroup();
+      if(!group.length) group = [document.querySelector(selectors)];
+      current = Math.max(0, Math.min(idx, group.length-1));
+      update();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+    lb.querySelector('.lb-close').addEventListener('click', close);
+    lb.addEventListener('click', e=>{ if(e.target===lb) close(); });
+    lb.querySelector('.lb-prev').addEventListener('click', ()=>{ current = (current-1+group.length)%group.length; update(); });
+    lb.querySelector('.lb-next').addEventListener('click', ()=>{ current = (current+1)%group.length; update(); });
+    document.addEventListener('keydown', e=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft'){ current = (current-1+group.length)%group.length; update(); }
+      if(e.key==='ArrowRight'){ current = (current+1)%group.length; update(); }
+    });
+    // swipe
+    let sx=0;
+    lb.addEventListener('touchstart', e=> sx=e.touches[0].clientX, {passive:true});
+    lb.addEventListener('touchend', e=>{
+      const dx = e.changedTouches[0].clientX - sx;
+      if(Math.abs(dx) > 40){ if(dx<0){ current=(current+1)%group.length; } else { current=(current-1+group.length)%group.length; } update(); }
+    }, {passive:true});
+    // delegate clicks
+    document.addEventListener('click', e=>{
+      const img = e.target.closest('.shot img, .hero-gallery img');
+      if(!img) return;
+      e.preventDefault();
+      group = getGroup();
+      const idx = group.indexOf(img);
+      open(idx>=0?idx:0);
+    });
+  })();
+
   // Contact form — static demo (no backend)
   const form = document.querySelector('[data-contact-form]');
   if(form){

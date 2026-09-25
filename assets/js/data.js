@@ -1,4 +1,4 @@
-// Nova Peak Studio — solo dev. Single source of truth.
+﻿// Nova Peak Studio — solo dev. Single source of truth.
 // One game: Super Block Blast!
 
 window.NOVA_DATA = {
@@ -20,13 +20,13 @@ window.NOVA_DATA = {
       platform: "Android",
       status: "Live",
       tagline: "Drop, clear, blast — the puzzle that won't let go.",
-      description: "Super Block Blast! is a fast, tactile block puzzle. Drag colorful blocks onto the 10×10 board, clear lines, chain combos, and chase that perfect blast. Easy to learn, hard to put down.",
+      description: "Super Block Blast! is a fast, tactile block puzzle. Drag colorful blocks onto the 8×8 board, clear lines, chain combos, and chase that perfect blast. Easy to learn, hard to put down.",
       longDescription: "I built Super Block Blast! for those 5-minute breaks that turn into 30. No timers breathing down your neck — just you, the board, and the satisfying pop of a multi-line clear. Every move matters, combos stack, and the board never fills the same way twice. Offline, snappy, and tuned for one-handed play.",
       features: [
-        "Drag & drop 10×10 block puzzle — clear rows & columns",
+        "Drag & drop 8×8 block puzzle — clear rows & columns",
         "Combo system with satisfying blast effects",
         "Daily challenge + endless mode",
-        "Offline, lightweight (~30 MB), 60fps on most phones",
+        "Offline, lightweight (~60 MB), 60fps on most phones",
         "No forced ads mid-game — ads only between sessions if enabled"
       ],
       icon: "../../assets/img/super-block-blast/icon.png",
